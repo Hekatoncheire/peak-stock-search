@@ -9,7 +9,7 @@ export default function SearchPage() {
     const [suggestions, setSuggestions] = useState([]);
 
     const fetchSuggestions = async (query: string) => {
-        if (query.length < 2) return;
+        if (query.length < 3) return;
         try {
             const response = await axios.get(`/api/stocks?query=${query}`);
             if (response.status!=500) {
@@ -28,7 +28,7 @@ export default function SearchPage() {
     return (
         <div className="container mx-auto p-6">
             <h1 className="text-2xl font-bold mb-4">Search Stocks</h1>
-            <SearchBar onSearch={fetchSuggestions} />
+            <SearchBar  />
             <ul className="mt-4">
                 {suggestions.map((stock: any) => (
                     <li key={stock.symbol} className="p-2 border-b">
