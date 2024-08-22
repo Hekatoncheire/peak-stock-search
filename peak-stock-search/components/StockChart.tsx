@@ -2,22 +2,12 @@ import { useEffect, useState } from "react";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import axios from "axios";
 
-export default function StockChart({ symbol }: { symbol: string }) {
-  const [chartData, setChartData] = useState([]);
-
-  useEffect(() => {
-    const fetchChartData = async () => {
-      const response = await axios.get(`/api/stocks/${symbol}/chart`);
-      setChartData(response.data);
-    };
-    fetchChartData();
-  }, [symbol]);
-
+export default function StockChart({ data }: { data: any }) {
   return (
     <div className="bg-white p-4 rounded shadow mt-6">
       <h3 className="text-lg font-bold mb-4">Price History</h3>
       <ResponsiveContainer width="100%" height={300}>
-        <LineChart data={chartData}>
+        <LineChart data={data}>
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="date" />
           <YAxis />
