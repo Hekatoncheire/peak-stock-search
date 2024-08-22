@@ -1,4 +1,5 @@
 "use client";
+
 import Link from "next/link";
 import { useState, useCallback } from "react";
 import { Search } from "lucide-react";
@@ -64,14 +65,12 @@ export default function SearchBar() {
     };
 
     return (
-        <div className="sm:w-1/2 w-full flex flex-col">
-            <label className="relative block">
-                <span className="absolute inset-y-0 left-0 flex items-center pl-3">
-                    <Search size={16} className="text-darkBlue"/>
-                </span>
-                <input className="placeholder:italic placeholder:text-darkBlue block bg-white w-full border rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-secondaryGreen focus:ring-secondaryGreen focus:ring-1 sm:text-sm" placeholder="Enter stock symbol or name" type="text" name="search" value={query} onChange={handleChange}/>
-            </label>
-            <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+        <div className="sm:w-1/2 w-full px-8 mt-8">
+            <div className="group flex flex-row items-center bg-white border sm:rounded-3xl has-[:focus]:border-secondaryGreen has-[:focus]:border-2 rounded-md">
+                <div className="pl-3 flex flex-row items-center">
+                    <Search size={18} className="text-darkBlue" />
+                </div>
+                <input className="placeholder:italic placeholder:text-darkBlue bg-transparent w-full  py-2 pl-4 pr-2 sm:text-lg focus:outline-none" placeholder="Enter stock symbol or name" type="text" name="search" value={query} onChange={handleChange} />
             </div>
             {/* <input
                 type="text"
@@ -81,10 +80,10 @@ export default function SearchBar() {
                 
             /> */}
             {isLoading ? <p>Loading...</p> : null}
-            {suggestions !== undefined ? <ul>
+            {suggestions !== undefined ? <ul className="mt-1 bg-white w-full sm:rounded-3xl rounded-md sm:max-h-screen max-h-80 overflow-y-auto shadow-sm">
                 {suggestions?.map((stock) => (
-                    <li key={stock.symbol} className="p-2 border-b">
-                        <Link href={`/stock/${stock.symbol}`}>
+                    <li key={stock.symbol} className="p-2 border-b py-4 px-4">
+                        <Link href={`/stock/${stock.symbol}?name=${encodeURIComponent(stock.name)}`}>
                             {stock.name} ({stock.symbol})
                         </Link>
                     </li>
