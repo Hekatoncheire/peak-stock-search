@@ -1,15 +1,24 @@
 import { NextResponse } from "next/server";
 import axios from "axios";
 
-const API_KEY = process.env.ALPHAVANTAGE_API_KEY;
+const API_KEY = process.env.RAPIDAPI_KEY;
 
-export async function GET({ params }: { params: { symbol: string } }) {
-  const { symbol } = params;
-
+export async function GET(request: Request, { params }: { params: { symbol: string } }) {
+  const options = {
+    method: 'GET',
+    url: 'https://alpha-vantage.p.rapidapi.com/query',
+    params: {
+      function: 'GLOBAL_QUOTE',
+      symbol: params.symbol,
+      datatype: 'json'
+    },
+    headers: {
+      'x-rapidapi-key': API_KEY,
+      'x-rapidapi-host': 'alpha-vantage.p.rapidapi.com'
+    }
+  };
   try {
-    const response = await axios.get(
-      `https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${API_KEY}`
-    );
+    const response = await axios.request(options)
 
     const data = {
       symbol: response.data["Global Quote"]["01. symbol"],

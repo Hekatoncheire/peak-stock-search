@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import axios from "axios";
 
-//const API_KEY = process.env.ALPHAVANTAGE_API_KEY;
+const API_KEY = process.env.RAPIDAPI_KEY;
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -17,7 +17,7 @@ export async function GET(request: Request) {
       function: 'SYMBOL_SEARCH'
     },
     headers: {
-      'x-rapidapi-key': '9f35510a13mshf6e1b047b48a10fp1d3e99jsn881635090403',
+      'x-rapidapi-key': API_KEY,
       'x-rapidapi-host': 'alpha-vantage.p.rapidapi.com'
     }
   }
@@ -33,5 +33,6 @@ export async function GET(request: Request) {
 
   } catch (error) {
     console.error(error)
+    return NextResponse.json({ error: "Failed to fetch stock details" }, { status: 500 });
   }
 }
