@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-// Fetch top-performing stocks using RapidAPI and native fetch
+// Fetch top-performing stocks
 export async function GET() {
     const API_KEY = process.env.RAPIDAPI_KEY;
     const url = 'https://alpha-vantage.p.rapidapi.com/query?function=TOP_GAINERS_LOSERS';

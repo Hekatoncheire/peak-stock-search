@@ -1,5 +1,6 @@
 import SearchBar from "@/components/SearchBar";
 import SideBar from "@/components/SideBar";
+import StocksList from "@/components/StocksList";
 
 async function fetchTopStocks() {
     try {
@@ -27,28 +28,32 @@ export default async function SearchPage() {
     return (
         <div className="bg-lightBlue flex sm:flex-row flex-col justify-start">
             <SideBar />
-            <div className="group w-full flex flex-col items-center space-y-12">
+            <div className="group sm:w-full flex flex-col items-center space-y-12 max-h-screen overflow-auto pb-8">
                 <div className="w-full flex justify-center z-10">
                     <SearchBar />
                 </div>
-                <div className="absolute sm:top-32 top-48 space-y-16 group-has-[:focus]:opacity-50 group-has-[:focus]:blur-sm w-4/5 flex flex-col items-center">
-                    <h1 className="text-4xl mx-10 z-0 self-start">Welcome, future Investor!</h1>
-                    <ul className="flex flex-col bg-white rounded-3xl py-4 self-start w-full">
-                        <h1 className="px-11 font-bold text-darkBlue text-2xl mb-7">Top performing stocks</h1>
+                <div className="group-has-[:focus]:fixed transition-opacity duration-1000 sm:top-20 top-48 space-y-12 group-has-[:focus]:opacity-50 group-has-[:focus]:blur-sm sm:group-has-[:focus]:w-5/6 w-full sm:px-16 px-4 flex flex-col items-center">
+                    <h1 className="text-4xl sm:mx-10 z-0 self-start text-center text-darkBlue font-bold">Welcome to Investopia!</h1>
+                    <h2 className="text-2xl sm:mx-10 z-0 self-start text-center sm:text-start text-darkBlue ">Scroll down to see the top-performing, worst-performing and most-actively traded stocks! Or just search any stock you want to explore! Enjoy</h2>
+                    <StocksList stockList={topStocks.top_gainers} title={"Best performers"}/>
+                    <StocksList stockList={topStocks.top_losers} title={"Worst performers"}/>
+                    <StocksList stockList={topStocks.most_actively_traded} title={"Most traded"}/>
+                    {/* <ul className="flex flex-col bg-white rounded-3xl py-4 sm:self-start w-full">
+                        <h1 className="sm:px-11 px-6 font-bold text-darkBlue text-2xl mb-7 sm:self-start self-center">Top performing stocks</h1>
                         {topStocks.top_gainers.map((stock: any) => (
-                            <div key={stock.ticker} className="flex p-4 bg-white border-b last:border-none">
-                                <div className="w-1/5 px-8">{stock.ticker}</div>
-                                <div className="w-1/5 px-8">${stock.price}</div>
-                                <div className={`w-1/5 px-8 ${stock.change_amount.startsWith('-') ? 'text-red-500' : 'text-primaryGreen'}`}>
-                                    {stock.change_amount}
+                            <div key={stock.ticker} className="flex p-4 bg-white border-b last:border-none flex-wrap">
+                                <div className="sm:w-1/5 w-1/3 pl-4 pr-8 sm:px-8">{stock.ticker}</div>
+                                <div className="sm:w-1/5 w-1/3 px-8">${stock.price}</div>
+                                <div className={`sm:w-1/5 w-1/3 hidden sm:block px-8 ${stock.change_amount.startsWith('-') ? 'text-red-500' : 'text-primaryGreen'}`}>
+                                    ${stock.change_amount}
                                 </div>
-                                <div className={`w-1/5 px-8 ${stock.change_percentage.startsWith('-') ? 'text-red-500' : 'text-primaryGreen'}`}>
+                                <div className={`sm:w-1/5 w-1/3 px-8 ${stock.change_percentage.startsWith('-') ? 'text-red-500' : 'text-primaryGreen'}`}>
                                     {stock.change_percentage}
                                 </div>
-                                <div className="w-1/5 px-8">{stock.volume}</div>
+                                <div className="sm:w-1/5 w-1/3 hidden sm:block px-8">{stock.volume}</div>
                             </div>
                         ))}
-                    </ul>
+                    </ul> */}
                 </div>
 
             </div>
