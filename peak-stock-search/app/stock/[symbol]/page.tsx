@@ -1,9 +1,6 @@
 import StockDetails from "@/components/StockDetails";
 import StockChart from "@/components/StockChart";
-import axios from "axios";
 import { fetchStockChartData, fetchStockDetails } from "@/utils/fetchStockDetails";
-
-
 
 export default async function StockDetailPage({ params, searchParams }: { params: { symbol: string }, searchParams: { name?: string } }) {
   const { symbol } = params;
