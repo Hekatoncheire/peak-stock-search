@@ -24,7 +24,6 @@ export async function GET(request: Request) {
 
   try {
     const response = await axios.request(options)
-    console.log(response.data)
     const data = response.data.bestMatches.map((match: any) => ({
       symbol: match["1. symbol"],
       name: match["2. name"],

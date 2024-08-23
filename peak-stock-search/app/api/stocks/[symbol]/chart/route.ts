@@ -22,7 +22,10 @@ export async function GET(request: Request, { params }: { params: { symbol: stri
     const response = await axios.request(options)
     const data = Object.entries(response.data["Time Series (Daily)"]).map(([date, values]: any) => ({
       date,
-      price: parseFloat(values["4. close"]),
+      open: parseFloat(values["1. open"]),
+      high: parseFloat(values["2. high"]),
+      low: parseFloat(values["3. low"]),
+      close: parseFloat(values["4. close"]),
     }));
 
     return NextResponse.json(data);
