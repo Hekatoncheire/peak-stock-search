@@ -1,51 +1,40 @@
-"use client";
-import { useEffect, useState } from "react";
-import axios from "axios";
 import StockDetails from "@/components/StockDetails";
 import StockChart from "@/components/StockChart";
-import { useStockData } from "@/public/context/StockDataContext";
-import { useSearchParams } from "next/navigation";
+import axios from "axios";
 
-export default function StockDetailPage({ params }: { params: { symbol: string } }) {
-  const searchParams = useSearchParams();
+// Fetch stock details server-side
+async function fetchStockDetails(symbol: string) {
+  try {
+    const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/stocks/${symbol}`);
+   
+    return response.data;
+  } catch (error) {
+    console.error("Failed to fetch stock details:", error);
+    return null;
+  }
+}
+
+// Fetch stock chart data server-side
+async function fetchStockChartData(symbol: string) {
+  try {
+    const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/stocks/${symbol}/chart`);
+    return response.data;
+  } catch (error) {
+    console.error("Failed to fetch stock chart data:", error);
+    return null;
+  }
+}
+
+export default async function StockDetailPage({ params, searchParams }: { params: { symbol: string }, searchParams: { name?: string } }) {
   const { symbol } = params;
-  const stockName = searchParams.get("name")
-  const { stockDetailsCache, setStockDetailsCache, stockChartCache, setStockChartCache } = useStockData();
-  const [stockData, setStockData] = useState(stockDetailsCache[symbol] || null);
-  const [chartData, setChartData] = useState(stockChartCache[symbol] || null);
+  const stockName = searchParams.name;
 
-  useEffect(() => {
-    if (!stockData) {
-      const fetchStockDetails = async () => {
-        try {
-          const response = await axios.get(`/api/stocks/${symbol}`);
-          setStockDetailsCache(symbol, response.data);
-          setStockData(response.data);
-        } catch (error) {
-          console.error("Failed to fetch stock details:", error);
-        }
-      };
-      fetchStockDetails();
-    }
-  }, [symbol, stockData, setStockDetailsCache]);
-
-  useEffect(() => {
-    if (!chartData) {
-      const fetchChartData = async () => {
-        try {
-          const response = await axios.get(`/api/stocks/${symbol}/chart`);
-          setStockChartCache(symbol, response.data);
-          setChartData(response.data);
-        } catch (error) {
-          console.error("Failed to fetch chart data:", error);
-        }
-      };
-      fetchChartData();
-    }
-  }, [symbol, chartData, setStockChartCache]);
+  // Fetch data server-side
+  const stockData = await fetchStockDetails(symbol);
+  const chartData = await fetchStockChartData(symbol);
 
   if (!stockData || !chartData) {
-    return <p>Loading...</p>;
+    return <p>Failed to load stock data.</p>;
   }
 
   return (
