@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
+'use client'
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
-import axios from "axios";
 
 export default function StockChart({ data }: { data: any }) {
   return (

@@ -22,3 +22,14 @@ export async function fetchStockChartData(symbol: string) {
         return null;
     }
 }
+
+export async function fetchStockName(symbol:string) {
+    try {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/search?query=${symbol}`)
+        console.log(response.data[0])
+        return response.data[0]
+    } catch (error) {
+        console.error(error)
+        return null
+    }
+}

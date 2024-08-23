@@ -1,3 +1,4 @@
+import { fetchStockName } from '@/utils/fetchStockDetails'
 import Link from 'next/link'
 import React from 'react'
 

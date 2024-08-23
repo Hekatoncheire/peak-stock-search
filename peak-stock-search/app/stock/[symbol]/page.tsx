@@ -1,10 +1,11 @@
 import StockDetails from "@/components/StockDetails";
 import StockChart from "@/components/StockChart";
-import { fetchStockChartData, fetchStockDetails } from "@/utils/fetchStockDetails";
+import { fetchStockChartData, fetchStockDetails, fetchStockName } from "@/utils/fetchStockDetails";
 
 export default async function StockDetailPage({ params, searchParams }: { params: { symbol: string }, searchParams: { name?: string } }) {
   const { symbol } = params;
-  const stockName = searchParams.name;
+  const fetchedStockName = await fetchStockName(symbol)
+  const stockName = searchParams.name || fetchedStockName?.name;
 
   // Fetch data server-side
   const stockData = await fetchStockDetails(symbol);
