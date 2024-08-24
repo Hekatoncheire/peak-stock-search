@@ -1,28 +1,9 @@
 import SearchBar from "@/components/SearchBar";
 import SideBar from "@/components/SideBar";
 import StocksList from "@/components/StocksList";
+import { fetchTopStocks } from "@/utils/fetchStockDetails";
 
-async function fetchTopStocks() {
-    try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/top-stocks`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            cache: 'force-cache'
-        })
 
-        if (!response.ok) {
-            console.log(response)
-            throw new Error("Failed to fetch top-performing stocks!")
-        }
-
-        const result = await response.json();
-        return result
-    } catch (error) {
-        console.error(error)
-    }
-}
 
 export default async function SearchPage() {
     const topStocks = await fetchTopStocks()
