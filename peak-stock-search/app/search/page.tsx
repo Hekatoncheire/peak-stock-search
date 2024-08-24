@@ -1,3 +1,4 @@
+"use client"
 import SearchBar from "@/components/SearchBar";
 import SideBar from "@/components/SideBar";
 import StocksList from "@/components/StocksList";
