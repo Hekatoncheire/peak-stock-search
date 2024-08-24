@@ -58,8 +58,8 @@ export default function SearchBar() {
     };
 
     return (
-        <div className="group sm:w-1/2 w-full px-8 mt-8 z-10 text-darkBlue">
-            <div className=" flex flex-row items-center bg-white border sm:rounded-3xl has-[:focus]:border-secondaryGreen has-[:focus]:border-2 rounded-md">
+        <div className=" sm:w-1/2 w-full px-8 mt-8 z-10 text-darkBlue">
+            <div className="group flex flex-row items-center bg-white border sm:rounded-3xl has-[:focus]:border-secondaryGreen has-[:focus]:border-2 rounded-md">
                 <div className="pl-3 flex flex-row items-center">
                     <Search size={18} className="text-darkBlue" />
                 </div>
