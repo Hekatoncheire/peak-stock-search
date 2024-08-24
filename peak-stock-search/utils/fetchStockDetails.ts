@@ -28,7 +28,7 @@ export async function fetchStockName(symbol: string) {
 
 export async function fetchTopStocks() {
     try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/top-stocks`, {
+        const response = await fetch(`/api/top-stocks`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
