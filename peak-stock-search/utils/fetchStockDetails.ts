@@ -25,25 +25,3 @@ export async function fetchStockName(symbol: string) {
         return null
     }
 }
-
-export async function fetchTopStocks() {
-    try {
-        const response = await fetch(`/api/top-stocks`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            cache: 'force-cache'
-        })
-
-        if (!response.ok) {
-            console.log(response)
-            throw new Error("Failed to fetch top-performing stocks!")
-        }
-
-        const result = await response.json();
-        return result
-    } catch (error) {
-        console.error(error)
-    }
-}
