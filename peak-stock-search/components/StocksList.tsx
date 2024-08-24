@@ -7,8 +7,8 @@ function StocksList({ stockList, title }: { stockList: any, title: string }) {
         <ul className="flex flex-col bg-white rounded-3xl py-4 sm:self-start w-full">
             <h1 className="sm:px-11 px-6 font-bold text-darkBlue text-2xl mb-7 sm:self-start self-center">{title}</h1>
             {stockList.map((stock: any) => (
-                <li>
-                    <Link key={stock.ticker} href={`/stock/${encodeURIComponent(stock.ticker)}`}>
+                <li key={stock.ticker}>
+                    <Link  href={`/stock/${encodeURIComponent(stock.ticker)}`}>
                         <div className="flex p-4 bg-white border-b last:border-none flex-wrap text-darkBlue">
                             <div className="sm:w-1/5 w-1/3 pl-4 pr-8 sm:px-8">{stock.ticker}</div>
                             <div className="sm:w-1/5 w-1/3 px-8">${stock.price}</div>
