@@ -36,9 +36,9 @@ export default async function SearchPage() {
                 <div className="group-[:focus-within]:blur-sm transition-opacity duration-1000 space-y-12 group-has-[:focus]:opacity-50 group-has-[:focus]:blur-sm  w-full sm:px-16 px-4 flex flex-col items-center">
                     <h1 className="text-4xl sm:mx-10 z-0 self-start text-center text-darkBlue font-bold">Welcome to Investopia!</h1>
                     <h2 className="text-2xl sm:mx-10 z-0 self-start text-center sm:text-start text-darkBlue ">Scroll down to see the top-performing and most-actively traded stocks! Or just search any stock you want to explore! Enjoy</h2>
-                    <StocksList stockList={topStocks?.top_gainers} title={"Best performers"} />
+                    <StocksList stockList={topStocks.top_gainers} title={"Best performers"} />
                     {/* <StocksList stockList={topStocks.top_losers} title={"Worst performers"}/> */}
-                    <StocksList stockList={topStocks?.most_actively_traded} title={"Most traded"} />
+                    <StocksList stockList={topStocks.most_actively_traded} title={"Most traded"} />
                 </div>
 
             </div>
