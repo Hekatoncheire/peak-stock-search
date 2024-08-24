@@ -17,7 +17,7 @@ function StocksList({ stockList, title }: { stockList: any, title: string }) {
                             <div className={`sm:w-1/5 w-1/3 px-8 pr-4 ${stock.change_percentage.startsWith('-') ? 'text-red-500' : 'text-primaryGreen'}`}>
                                 {stock.change_percentage}
                             </div>
-                            <div className="sm:w-1/5 w-1/3 sm:max-lg:hidden sm:block px-8">{stock.volume}</div>
+                            <div className="sm:w-1/5 w-1/3 max-lg:hidden sm:block px-8">{stock.volume}</div>
                         </div>
                     </Link>
                 </li>

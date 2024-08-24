@@ -55,7 +55,7 @@ export default function SearchPage() {
   return (
     <div className="bg-lightBlue flex sm:flex-row flex-col justify-start">
       <SideBar />
-      <div className="group sm:w-full flex flex-col items-center space-y-12 max-h-screen overflow-auto pb-8">
+      <div className="group sm:w-full flex flex-col sm:max-md:items-center space-y-12 max-h-screen overflow-auto pb-8">
         <div className="w-full flex justify-center z-10">
           <SearchBar />
         </div>
