@@ -15,9 +15,9 @@ export default function FavouritesPage() {
         <div className="bg-lightBlue flex sm:flex-row flex-col">
             <SideBar />
             <div className='w-full px-8 max-h-screen overflow-auto pb-8 pt-8'>
-                <h1 className="text-3xl font-bold mb-6 text-center sm:text-left mx-8">Your Favourites</h1>
+                <h1 className="text-3xl font-bold mb-6 text-center sm:text-left mx-8 text-darkBlue">Your Favourites</h1>
                 {favourites.length === 0 ? (
-                    <p className='text-xl text-center sm:text-left mx-8'>No favourite stocks yet. Go add some!</p>
+                    <p className='text-xl text-center sm:text-left mx-8 text-darkBlue'>No favourite stocks yet. Go add some!</p>
                 ) : (
                     <ul className="space-y-4 bg-white px-4 rounded-2xl">
                         {favourites.map((stock: any) => (
